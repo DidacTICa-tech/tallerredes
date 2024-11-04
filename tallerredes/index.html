@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller Redes - CET 30</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        header img {
+            height: 60px;
+            margin-right: 20px;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+        .carousel {
+            position: relative;
+            width: 80%;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .content {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 30%;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer a {
+            color: #4CAF50;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header con logotipo y título -->
+    <header>
+        <img src="img/logo.png" alt="Logotipo" /> <!-- Asegúrate de tener un archivo llamado logo.png en la carpeta img -->
+        <h1>CET 30 PROGRAMACIÓN Y REDES</h1>
+    </header>
+
+    <!-- Carrusel de imágenes -->
+    <div class="carousel">
+        <img src="img/img1.jpg" alt="Imagen 1" class="active"> <!-- Cambia estas rutas a tus imágenes del carrusel -->
+        <img src="img/img2.jpg" alt="Imagen 2">
+        <img src="img/img3.jpg" alt="Imagen 3">
+        <img src="img/img4.jpg" alt="Imagen 4">
+        <img src="img/img5.jpg" alt="Imagen 5">
+    </div>
+
+    <h1>TALLER REDES</h1>
+    <div id="main-content" class="content"></div>
+
+    <footer>
+        <p>Contacto: contacto@tallerredes.com | <a href="#">Instagram</a></p>
+    </footer>
+
+    <script>
+        // Datos de los temas
+        const temas = [
+            { 
+                titulo: "CABLEADO ESTRUCTURADO", 
+                imagen: "img/cableado.png" // Ruta de la imagen para representar el tema
+            },
+            { 
+                titulo: "WIFI", 
+                imagen: "img/wifi.jpg" // Ruta de la imagen para representar el tema
+            },
+            { 
+                titulo: "CLIENTE/SERVIDOR", 
+                imagen: "img/server.jpg" // Ruta de la imagen para representar el tema
+            }
+        ];
+
+        // Función para crear el contenido de la página
+        function crearContenido() {
+            const contenidoDiv = document.getElementById('main-content');
+            
+            temas.forEach(tema => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                
+                const titulo = document.createElement('h2');
+                titulo.textContent = tema.titulo;
+                
+                const imagen = document.createElement('img');
+                imagen.src = tema.imagen;
+                imagen.alt = tema.titulo;
+                
+                card.appendChild(titulo);
+                card.appendChild(imagen);
+                contenidoDiv.appendChild(card);
+            });
+        }
+
+        // Inicializar la página
+        crearContenido();
+
+        // Funcionalidad del carrusel
+        const images = document.querySelectorAll('.carousel img');
+        let currentIndex = 0;
+
+        function showNextImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+
+        // Cambiar imagen cada 3 segundos
+        setInterval(showNextImage, 3000);
+    </script>
+</body>
+</html>
